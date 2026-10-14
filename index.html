@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjay Kumar P | Portfolio</title>
+    <!-- Main Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Stylish Font for Thank You -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --nav-bg: rgba(11, 9, 26, 0.95);
+            --card-bg: rgba(20, 17, 46, 0.85);
+            --text-primary: #ffffff;
+            --text-secondary: #a3a3b5;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
+            --gradient-primary: linear-gradient(90deg, #a855f7, #ec4899);
+            --glow-blue: 0 0 50px rgba(0, 195, 255, 0.6);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+
+        body { 
+            background: linear-gradient(rgba(11, 9, 26, 0.85), rgba(11, 9, 26, 0.95)), url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat fixed;
+            color: var(--text-primary); 
+            overflow-x: hidden; 
+        }
+
+        /* --- NAVBAR --- */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: var(--nav-bg); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #d4a5ff; }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 0.9rem; font-weight: 400; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-pink); }
+        .btn-download { background: transparent; color: var(--text-primary); border: 1px solid rgba(255, 255, 255, 0.2); padding: 8px 18px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+        .btn-download:hover { border-color: var(--accent-purple); }
+        .menu-icon { display: none; color: #fff; font-size: 1.8rem; cursor: pointer; }
+        .mobile-resume-btn { display: none; }
+
+        /* --- COMMON SECTION STYLES --- */
+        section { padding: 100px 8% 60px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .section-title { font-size: 2.2rem; font-weight: 600; color: #d4a5ff; margin-bottom: 50px; text-align: center; }
+
+        /* --- HERO SECTION --- */
+        .hero { display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 100%; gap: 30px; }
+        .hero-text { flex: 1; max-width: 650px; }
+        .hero-text h3 { font-weight: 500; font-size: 1.2rem; margin-bottom: 5px; }
+        .hero-text h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 5px; color: #fff; }
+        .hero-text h2 { font-size: 1.8rem; font-weight: 600; color: #d4a5ff; margin-bottom: 5px; }
+        .hero-text h4 { font-size: 1.15rem; font-weight: 500; color: var(--accent-pink); margin-bottom: 20px; }
+        .hero-text p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 30px; font-size: 1.05rem; }
+        
+        .btn-group { display: flex; gap: 20px; align-items: center; margin-bottom: 25px; }
+        .btn-primary { background: var(--gradient-primary); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; border: none; text-align: center; }
+        .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; text-align: center; }
+        
+        /* TOP SOCIAL ICONS */
+        .top-social-icons { display: flex; gap: 15px; }
+        .top-social-icons a { color: #fff; width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; border-radius: 50%; text-decoration: none; transition: 0.3s; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); font-size: 1.2rem; }
+        .top-social-icons a:hover { background: var(--accent-purple); border-color: var(--accent-purple); transform: translateY(-3px); }
+
+        .hero-image-container { position: relative; border-radius: 50%; padding: 10px; background: transparent; box-shadow: var(--glow-blue); }
+        .hero-image-container img { width: 350px; height: 350px; border-radius: 50%; object-fit: cover; border: 3px solid transparent; }
+
+        /* --- ABOUT SECTION --- */
+        .about-content { max-width: 900px; text-align: center; }
+        .about-text p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; text-align: justify;}
+
+        /* --- EDUCATION (TIMELINE) --- */
+        .timeline { width: 100%; max-width: 800px; margin: 0 auto; position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 2px; background: #ec4899; }
+        .timeline-item { position: relative; padding-left: 30px; margin-bottom: 30px; }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 14px; height: 14px; background: #ec4899; border-radius: 50%; box-shadow: 0 0 10px #ec4899; }
+        .timeline-content { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 20px; backdrop-filter: blur(5px); }
+        .timeline-date { color: var(--accent-purple); font-size: 0.85rem; margin-bottom: 5px; display: block; font-weight: 500; }
+        .timeline-content h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .timeline-content p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+
+        /* --- TECH STACK --- */
+        .tech-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1000px; }
+        .tech-card { background: var(--card-bg); border-radius: 15px; padding: 30px; width: 150px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 15px; transition: transform 0.3s; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.05); }
+        .tech-card:hover { transform: translateY(-5px); border-color: var(--accent-purple); }
+        .tech-card i { font-size: 40px; }
+        .tech-card span { font-weight: 500; font-size: 0.9rem; }
+
+        /* --- INTERNSHIP --- */
+        .internship-container { background: var(--card-bg); border: 1px solid #d4a5ff; border-radius: 15px; padding: 40px; width: 100%; max-width: 900px; box-shadow: 0 0 15px rgba(168, 85, 247, 0.1); backdrop-filter: blur(5px); }
+        .intern-item h3 { color: #d4a5ff; font-size: 1.2rem; margin-bottom: 10px; text-align: center; }
+        .intern-details { font-size: 0.95rem; line-height: 1.8; color: var(--text-primary); text-align: center;}
+        
+        /* Company Link Style */
+        .company-link { color: var(--accent-pink); text-decoration: none; font-weight: 500; padding-bottom: 2px; border-bottom: 1px dashed var(--accent-pink); transition: 0.3s; }
+        .company-link:hover { color: var(--accent-purple); border-bottom-color: var(--accent-purple); }
+        
+        .intern-details span { color: var(--text-secondary); display: block; margin-top: 15px; text-align: justify;}
+
+        /* --- CERTIFICATES --- */
+        .cert-container { display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 700px; }
+        .cert-card { background: var(--card-bg); border-radius: 10px; padding: 30px; width: 100%; border-left: 4px solid var(--accent-purple); backdrop-filter: blur(5px); display: flex; flex-direction: column; gap: 10px; }
+        .cert-card h3 { color: #d4a5ff; font-size: 1.2rem; }
+        .cert-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; }
+
+        /* --- PROJECTS --- */
+        .project-grid { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 1000px; }
+        .project-card { width: 100%; max-width: 450px; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); }
+        .project-img { width: 100%; height: 150px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; border-bottom: 2px solid var(--accent-pink); }
+        .project-img i { font-size: 50px; color: rgba(255,255,255,0.5); }
+        .project-info { padding: 30px; flex: 1; display: flex; flex-direction: column; }
+        .project-info h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fff;}
+        .project-info p { font-size: 0.95rem; margin-bottom: 20px; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+        .project-links { display: flex; gap: 15px; }
+        .project-links a { background: var(--gradient-primary); color: #fff; padding: 8px 20px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; }
+
+        /* --- CONTACT & THANK YOU --- */
+        .contact-section { text-align: center; }
+        .contact-section p { color: var(--text-secondary); margin-bottom: 40px; font-size: 1.1rem; }
+        
+        .contact-icons { display: flex; gap: 30px; justify-content: center; margin-bottom: 60px; flex-wrap: wrap; }
+        .contact-icons a { width: 60px; height: 60px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--text-primary); font-size: 1.5rem; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 0 15px rgba(0,0,0,0.2); backdrop-filter: blur(5px); }
+        .contact-icons a:hover { background: var(--accent-purple); transform: translateY(-5px); box-shadow: 0 5px 20px rgba(168, 85, 247, 0.4); border-color: var(--accent-purple); }
+
+        /* STYLISH THANK YOU FONT */
+        .thank-you { font-family: 'Dancing Script', cursive; font-size: 3rem; color: #d4a5ff; margin-bottom: 20px; text-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
+        
+        footer { text-align: center; padding: 20px; background: rgba(7, 5, 18, 0.8); color: var(--text-secondary); font-size: 0.85rem; width: 100%; }
+
+        /* =========================================
+           MOBILE RESPONSIVENESS (MEDIA QUERIES)
+           ========================================= */
+        @media (max-width: 860px) {
+            /* Navbar Mobile View */
+            .menu-icon { display: block; }
+            .btn-download { display: none; } /* Hides desktop button */
+            .mobile-resume-btn { display: block; margin-top: 10px; color: var(--accent-pink) !important; font-weight: 600 !important; }
+            
+            .nav-links {
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: var(--nav-bg); backdrop-filter: blur(10px);
+                flex-direction: column; align-items: center; padding: 20px 0;
+                gap: 20px; display: none; border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links.active { display: flex; }
+
+            /* Hero Section Mobile View */
+            section { padding: 80px 5% 40px; }
+            .hero { flex-direction: column; text-align: center; gap: 40px; padding-top: 120px; }
+            .hero-text { display: flex; flex-direction: column; align-items: center; }
+            .hero-text h1 { font-size: 3rem; }
+            .hero-text h2 { font-size: 1.4rem; }
+            .hero-text h4 { font-size: 1rem; }
+            
+            /* Buttons Full Width */
+            .btn-group { flex-direction: column; width: 100%; gap: 15px; margin-bottom: 20px; }
+            .btn-primary, .btn-secondary { width: 100%; padding: 15px; font-size: 1rem; }
+            
+            .top-social-icons { justify-content: center; }
+            
+            /* Smaller Image for Mobile */
+            .hero-image-container img { width: 280px; height: 280px; }
+
+            /* Other Sections Adjustments */
+            .tech-grid { padding: 0 10px; }
+            .tech-card { width: 130px; padding: 20px; }
+            .internship-container, .cert-card, .project-card { width: 100%; padding: 20px; }
+            .thank-you { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Sanjay Kumar P</div>
+        
+        <!-- Hamburger Menu Icon for Mobile -->
+        <div class="menu-icon" id="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tech-stack">Tech Stack</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#internship">Internship</a></li>
+            <li><a href="#certificate">Certificates</a></li>
+            <li><a href="#project">Project</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <!-- Mobile Only Resume Link -->
+            <li><a href="RESUME.PDF.pdf" download="Sanjay_Kumar_Resume.pdf" class="mobile-resume-btn"><i class="fas fa-download"></i> Download Resume</a></li>
+        </ul>
+        
+        <!-- Desktop Resume Button -->
+        <a href="RESUME.PDF.pdf" download="Sanjay_Kumar_Resume.pdf" class="btn-download"><i class="fas fa-download"></i> Download Resume</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <h3>Hello, I'm</h3>
+            <h1>Sanjay Kumar P</h1>
+            <h2>Master of Computer Application (MCA)</h2>
+            <h4>Aspiring SOC Analyst / Cybersecurity Professional & Web Developer</h4>
+            <p>Focused on cybersecurity, threat monitoring, incident response, and building responsive web applications. Skilled in analyzing security events, identifying vulnerabilities, and utilizing modern tools to protect systems.</p>
+            
+            <div class="btn-group">
+                <a href="#contact" class="btn-primary">Contact Me</a>
+                <a href="#project" class="btn-secondary">View My Work</a>
+            </div>
+
+            <!-- TOP SOCIAL ICONS -->
+            <div class="top-social-icons">
+                <a href="https://github.com/123sanjay9840-eng" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:123sanjay9840@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/sanjay-kumar-p-1893892b3" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <img src="profile.jpg.jpeg" alt="Sanjay Kumar P">
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I am Sanjay Kumar P, an MCA graduate and aspiring SOC Engineer with a strong passion for cybersecurity and software development. I specialize in evaluating security events and applying mitigation strategies.</p>
+                <p>My technical skills include log analysis tools like Splunk and Wazuh, Microsoft Defender (EDR), network analysis with Wireshark, as well as frontend programming with HTML and CSS. I continuously work on projects to improve my practical knowledge and industry experience.</p>
+                <p>My goal is to become a successful Cybersecurity Professional and contribute to innovative technological solutions that make a positive impact on system security.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section id="tech-stack">
+        <h2 class="section-title">Tech Stack</h2>
+        <div class="tech-grid">
+            <div class="tech-card"><i class="fas fa-chart-pie" style="color: #F58220;"></i><span>Splunk</span></div>
+            <div class="tech-card"><i class="fas fa-shield-alt" style="color: #00A9E5;"></i><span>Wazuh</span></div>
+            <div class="tech-card"><i class="fab fa-windows" style="color: #00A4EF;"></i><span>MS Defender</span></div>
+            <div class="tech-card"><i class="fas fa-network-wired" style="color: #1679A7;"></i><span>Wireshark</span></div>
+            <div class="tech-card"><i class="fab fa-python" style="color: #FFD43B;"></i><span>Python</span></div>
+            <div class="tech-card"><i class="fab fa-html5" style="color: #E34F26;"></i><span>HTML5</span></div>
+            <div class="tech-card"><i class="fab fa-css3-alt" style="color: #1572B6;"></i><span>CSS3</span></div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+            <!-- MCA -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Graduated 2026</span>
+                    <h3>Master of Computer Application (MCA)</h3>
+                    <p>Udaya School of Engineering (Anna University). Successfully completed Master's degree with a CGPA of 8.0.</p>
+                </div>
+            </div>
+            
+            <!-- B.Sc -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Graduated 2024</span>
+                    <h3>B.Sc in Physical Education</h3>
+                    <p>Scott Christian College (MS University). Successfully completed Bachelor's degree with a CGPA of 7.45.</p>
+                </div>
+            </div>
+
+            <!-- Class XII -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Passed out in 2021</span>
+                    <h3>Class XII</h3>
+                    <p>Tamil Nadu, English. Completed with a score of 83%.</p>
+                </div>
+            </div>
+
+            <!-- Class X -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Passed out in 2019</span>
+                    <h3>Class X</h3>
+                    <p>Tamil Nadu, English. Completed with a score of 60.33%.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERNSHIP -->
+    <section id="internship">
+        <h2 class="section-title">Internship</h2>
+        <div class="internship-container">
+            <div class="intern-item">
+                <h3>Web Development Intern</h3>
+                <div class="intern-details">
+                    <p><strong>Company:</strong> <a href="https://www.google.com/maps/search/?api=1&query=JCS+Infotech+Nagercoil" target="_blank" class="company-link"><i class="fas fa-map-marker-alt"></i> JCS Infotech, Nagercoil</a></p>
+                    <p><strong>Duration:</strong> August 2025 - September 2025</p>
+                    <span>Worked on developing and structuring user-friendly web pages using HTML, CSS, and basic JavaScript. Collaborated with the technical head to optimize web performance and improve frontend functionality.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificate">
+        <h2 class="section-title">Certificates</h2>
+        <div class="cert-container">
+            <div class="cert-card">
+                <h3>Endpoint Security</h3>
+                <p>Completed Endpoint Security certification from Cisco Networking Academy (May 29, 2026). Evaluated endpoint security and analyzed malware files extracted from packet captures.</p>
+            </div>
+            <div class="cert-card">
+                <h3>Security Investigation</h3>
+                <p>Practical Security Investigation with Splunk, Wazuh and Osquery from Udemy. Gained hands-on experience in log analysis and security monitoring.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="project">
+        <h2 class="section-title">My Projects</h2>
+        <div class="project-grid">
+            
+            <!-- Project 1: Existing Project -->
+            <div class="project-card">
+                <div class="project-img"><i class="fas fa-shield-virus"></i></div>
+                <div class="project-info">
+                    <h3>Windows Binary Threat Analysis</h3>
+                    <p>Conducted static analysis of Windows executables to identify threats. Analyzed IOCs and studied Living-off-the-Land Binaries (LOLBINS) using Python to classify files as malicious or benign.</p>
+                    <div class="project-links">
+                        <a href="#">Live Demo</a>
+                        <a href="https://github.com/123sanjay9840-eng" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: New SIEM Dashboard Project -->
+            <div class="project-card">
+                <div class="project-img"><i class="fas fa-network-wired"></i></div>
+                <div class="project-info">
+                    <h3>Mini SIEM Dashboard</h3>
+                    <p>Built a real-time Threat Detection Dashboard using Tailwind CSS to monitor failed login logs. Developed a Python parser and a Scapy packet sniffer, integrated via a FastAPI backend to detect brute-force attacks.</p>
+                    <div class="project-links">
+                        <a href="#">Live Demo</a>
+                        <a href="https://github.com/123sanjay9840-eng" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Let's Work Together</h2>
+        <p>Have a project in mind or want to connect? Feel free to reach out.</p>
+        
+        <div class="contact-icons">
+            <a href="https://github.com/123sanjay9840-eng" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:123sanjay9840@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/sanjay-kumar-p-1893892b3" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+
+        <div class="thank-you">Thank you for visiting my portfolio</div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Sanjay Kumar P | All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript for Mobile Hamburger Menu -->
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Change icon between bars and close(x)
+            if (navLinks.classList.contains('active')) {
+                menuIcon.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                menuIcon.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Close menu when a link is clicked
+        const links = document.querySelectorAll('.nav-links li a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuIcon.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    </script>
+</body>
+</html>
